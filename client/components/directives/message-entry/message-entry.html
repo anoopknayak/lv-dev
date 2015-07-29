@@ -1,0 +1,21 @@
+<div class="row message" ng-click="showFullMessage(message)">
+  <div class="col-md-2">
+    <img class="small-avatar" src="{{ message.from.avatar}}" alt=""/>
+  </div>
+  <div class="col-md-10">
+    <div class="row">
+      <div class="col-md-8"><h4>{{ message.from.name}}</h4></div>
+      <div class="col-md-4">{{message.sentDate}}</div>
+    </div>
+    <div class="row subject"><div class="col-md-12"><h5>{{message.subject}}</h5></div></div>
+    <div class="row message">
+      <div class="col-md-12">
+        <p>
+          {{message.content | limitTo: 30}}
+          <span ng-show="moreContent"> ...</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<hr/>

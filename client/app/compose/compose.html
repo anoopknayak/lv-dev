@@ -1,0 +1,47 @@
+<div class="col-md-12">
+  <div class="row content">
+    <div class="col-md-3 sidebar panel">
+      <div class="row">
+        <div class="col-md-4"><img class="avatar" src="{{ currentUser.avatar}}" alt=""/></div>
+        <div class="col-md-8"><h2>{{ currentUser.name }}</h2></div>
+      </div>
+      <div class="row"><a href="/compose-new-message"><h3>New Message</h3></a></div>
+      <div class="row"><a href="/messages"><h3>Inbox</h3></a></div>
+    </div>
+    <div class="col-md-9 main-content">
+      <div class="row panel"><h1>Compose New Message</h1></div>
+      <div class="row">
+        <form action="" name="emailForm" novalidate>
+          <div class="form-group" ng-class="{ 'has-success': emailForm.to.$valid && emailFormSubmitted,
+                                              'has-error': emailForm.to.$invalid && emailFormSubmitted }">
+            <label for="to"> To</label>
+            <input type="text" name="to" id="to" ng-model="newMessage.toName" typeahead="user as user.name for user in users | filter:{name:$viewValue} | limitTo:10" class="form-control" required/>
+            <p class="help-block" ng-show="emailForm.to.$error.required && emailFormSubmitted">
+              Sender not given.
+            </p>
+          </div>
+
+          <div class="form-group" ng-class="{ 'has-success': emailForm.subject.$valid && emailFormSubmitted,
+                                              'has-error': emailForm.subject.$invalid && emailFormSubmitted }">
+            <label for="subject"> Subject</label>
+            <input type="text" name="subject" ng-model="newMessage.subject" id="subject" class="form-control" required/>
+            <p class="help-block" ng-show="emailForm.subject.$error.required && emailFormSubmitted">
+              Subject is needed to send the message.
+            </p>
+          </div>
+          <div class="form-group" ng-class="{ 'has-success': emailForm.content.$valid && emailFormSubmitted,
+                                              'has-error': emailForm.content.$invalid && emailFormSubmitted }">
+            <label for="message"> Message</label>
+            <textarea rows="6" placeholder="Type your message here" ng-model="newMessage.content" name="message" id="message" class="form-control" required></textarea>
+            <p class="help-block" ng-show="emailForm.content.$error.required && emailFormSubmitted">
+              There should be content to send.
+            </p>
+          </div>
+          <div class="form-group">
+            <a class="btn btn-primary right" ng-click="sendMessage(emailForm)">Send</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

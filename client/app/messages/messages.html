@@ -1,0 +1,29 @@
+<div class="col-md-12">
+<div class="row content">
+  <div class="col-md-3 sidebar panel">
+    <div class="row">
+      <div class="col-md-4"><img class="avatar" src="{{ currentUser.avatar}}" alt=""/></div>
+      <div class="col-md-8"><h2>{{ currentUser.name }}</h2></div>
+    </div>
+    <div class="row"><a href="/compose-new-message"> <h3>New Message</h3></a></div>
+    <div class="row"><a href="/messages"> <h3>Inbox</h3></a></div>
+  </div>
+  <div class="col-md-9 main-content">
+    <div class="row panel" ng-hide="detailedView"><h1>Inbox</h1></div>
+    <div class="row list-of-messages" ng-hide="detailedView">
+      <message-entry ng-repeat="m in messages" message="m"></message-entry>
+    </div>
+    <div class="row full-message" ng-show="detailedView">
+      <div class="row"><h1>{{fullMessage.subject}}</h1></div>
+      <hr/>
+      <div class="row"><h4>From: {{fullMessage.from.name}}</h4></div>
+      <div class="row">
+        <h4>Message</h4>
+        <p>{{fullMessage.content}}</p>
+        <a href="#" class="btn btn-primary"> Reply(coming soon)</a>
+        <a href="#" class="btn btn-primary" ng-click="detailedView = false;"> Back</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
